@@ -52,11 +52,15 @@ NUMBER_TABLE = {
 
 class Numbering
   def convert(num)
-    puts NUMBER_TABLE[num]
+    splitted = num.split("")
+    m = []
+    (splitted.count - 1).times { m << "0" }
+    NUMBER_TABLE[(splitted[0] + m.join("")).to_i]
   end
+
 end
 
 puts 'give me a number'
-number = gets.chomp.to_i
+num = gets.chomp
 conversion = Numbering.new
-puts conversion.convert(number)
+puts conversion.convert(num)
