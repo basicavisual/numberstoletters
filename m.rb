@@ -43,7 +43,7 @@ class Numbering
       700 => 'seven hundred',
       800 => 'eight hundred',
       900 => 'nine hundred',
-      1000 => 'thousand',
+      1000 => 'one thousand',
       1100 => 'eleven hundred',
       1200 => 'twelve hundred',
       1300 => 'thirteen hundred',
@@ -79,6 +79,11 @@ class Numbering
     if @number <= 20
       NUMBER_TABLE[@number]
     elsif @decimals < 3
+      self.spew
+    elsif @number < 2000
+      print NUMBER_TABLE[(self.splitted[0..1].join("") + "00").to_i] + " and "
+      @splitted = self.splitted.drop(2)
+      @decimals = decimals - 2
       self.spew
     end
   end
