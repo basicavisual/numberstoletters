@@ -65,19 +65,17 @@ class Numbering
   end
 
   def spew
-    m = []
+    digits = decimals
     @decimals.times do |n|
-      digits = decimals
-      digits.times { m << "0" }
-      print NUMBER_TABLE[( @splitted[n] + m.join("")).to_i] + " "
+      digits.times { @splitted[n] << "0" }
+      print NUMBER_TABLE[( @splitted[n] ).to_i] + " "
       digits -= 1
-      m = []
+      print "and " if digits == 1
     end
-    print NUMBER_TABLE[@splitted.last.to_i]
+    print NUMBER_TABLE[self.splitted[-1].to_i]
   end
 
   def convert
-
     if @number <= 20
       NUMBER_TABLE[@number]
     elsif @decimals < 3
