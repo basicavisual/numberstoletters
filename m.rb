@@ -53,8 +53,6 @@ class Numbering
       1700 => 'seventeen hundred',
       1800 => 'eighteen hundred',
       1900 => 'nineteen hundred',
-      100000 => 'a hundred',
-      1000000 => 'a million'
     }
 
 
@@ -65,6 +63,7 @@ class Numbering
   end
 
   def spew
+
     digits = decimals
     @decimals.times do |n|
       digits.times { @splitted[n] << "0" }
@@ -84,6 +83,18 @@ class Numbering
       print NUMBER_TABLE[(self.splitted[0..1].join("") + "00").to_i] + " and "
       @splitted = self.splitted.drop(2)
       @decimals = decimals - 2
+      self.spew
+    else
+      a = self.splitted.slice!(-3..-1)
+      if @number < 2000
+        print NUMBER_TABLE[self.splitted.join("").to_i]
+      else
+        @decimals = decimals - 3
+        self.spew
+      end
+      print " thousand "
+      @splitted = a
+      @decimals = 2
       self.spew
     end
   end
