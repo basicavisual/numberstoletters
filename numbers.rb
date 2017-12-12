@@ -7,13 +7,8 @@ class Numbering
     rescue ArgumentError => e
       puts "There was an error with your input: #{e}"
     end
-
     self.splitting
     self.convert
-  end
-
-  def is_number?
-    is_a? Numeric
   end
 
   NUMBER_TABLE = {
