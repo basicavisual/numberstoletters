@@ -67,7 +67,7 @@ class Numbering
     digits = decimals
     @decimals.times do |n|
       digits.times { @splitted[n] << "0" }
-      print NUMBER_TABLE[( @splitted[n] ).to_i] + " "
+      print NUMBER_TABLE[( @splitted[n] ).to_i] + " " unless @splitted[n].to_i == 0 
       digits -= 1
       print "and " if digits == 1
     end
